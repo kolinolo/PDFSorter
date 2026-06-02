@@ -52,7 +52,7 @@ reArquivos = {
     },
 
     'Resumo DCTFWeb': {
-    'pArquivo':['RELATÓRIO RESUMO DE DÉBITOS - DCTFWeb'],
+    'pArquivo':['RELATÓRIO RESUMO DE (DÉBITOS|CRÉDITOS) - DCTFWeb'],
     'cnpj': mCNPJ,
     'pasta': 'DCTFWEB'
     },
@@ -170,3 +170,6 @@ def extrairPDF(caminho):
         print("Erro ao ler PDF:", e)
 
     return pdfTXT
+
+
+#print(extrairPDF(r"C:\Users\Marcelo\Documents\Projetos GitHub\PDFSRT\data\Entrada\ResumoCreditos_36214840000102_012026_40_.pdf"))

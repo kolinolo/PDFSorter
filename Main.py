@@ -34,6 +34,7 @@ while mes not in [f'0{m}'[-2:] for m in range(1, 13)]:
 
 
 
+if 'data' not in os.listdir(os.getcwd()): os.mkdir(f'{os.getcwd()}/data')
 
 # Processa
 verde('Processando Arquivos')
@@ -43,6 +44,11 @@ files = []
 erros = []
 
 entradas = len(os.listdir('data/Entrada'))
+
+if entradas == 0:
+    vermelho("Não há arquivos na pasta de entradas")
+    input('precione qualquer tecla para sair')
+    exit()
 
 for arquivo in os.listdir('data/Entrada'):
 
@@ -118,15 +124,18 @@ caminhoSaidas = f'{os.getcwd()}/data/Saida/{pastaSaida}'
 
 if saidas == entradas:
     verde('Processo finalizado, todos os arquivos foram processados e salvos')
-    os.startfile(caminhoSaidas)
+
 else:
     vermelho(f'Processo finalizado, {saidas}/{entradas} arquivos foram processados e salvos \n'
              f' ocorreram {entradas - saidas} erros\n')
 
     for e in erros:
         vermelho(e)
+        saidaAtual = f'{caminhoSaidas}/erros'
+        os.makedirs(saidaAtual, exist_ok=True)
+        arquivo = e.split(' -> ')[0]
+        shutil.copy(f'data/Entrada/{arquivo}', fr'{saidaAtual}\{arquivo}')
 
-    if pastaSaida in os.listdir(f'{os.getcwd()}/data/Saida/'):
-        os.startfile(caminhoSaidas)
+os.startfile(caminhoSaidas)
 
 input('clique qualquer tecla para sair')
