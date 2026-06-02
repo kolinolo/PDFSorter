@@ -152,6 +152,7 @@ def extrairPJ(texto,tipo:dict):
 
     if resultado is None: return None
 
+
     return resultado.group(0)
 
 def extrairPDF(caminho):

@@ -113,15 +113,20 @@ for f in files:
 print(f'Entradas:{entradas}')
 print(f'Saidas:{saidas}')
 
+caminhoSaidas = f'{os.getcwd()}/data/Saida/{pastaSaida}'
+
+
 if saidas == entradas:
     verde('Processo finalizado, todos os arquivos foram processados e salvos')
-    os.startfile(f'{os.getcwd()}/data/Saida/{pastaSaida}')
+    os.startfile(caminhoSaidas)
 else:
     vermelho(f'Processo finalizado, {saidas}/{entradas} arquivos foram processados e salvos \n'
              f' ocorreram {entradas - saidas} erros\n')
-    os.startfile(f'{os.getcwd()}/data/Saida/{pastaSaida}')
 
     for e in erros:
         vermelho(e)
+
+    if pastaSaida in os.listdir(f'{os.getcwd()}/data/Saida/'):
+        os.startfile(caminhoSaidas)
 
 input('clique qualquer tecla para sair')
